@@ -1,0 +1,103 @@
+This is the README file for the APOGEE KM dwarf catalog. 
+
+Caution: 
+Rather than deleting values that were classified as bad or unreliable, I've simply included them with both the information used to examine their quality and my own good/bad flags. For example, every object can have a value for i band photometry, but some are not matches (values around -999, ra_sdss = 0) and others are saturated (so have sdss_goodphot[[3] = 0). 
+
+APOGEE + ASPCAP parameters (from https://data.sdss.org/datamodel/files/APOGEE_REDUX/APRED_VERS/APSTAR_VERS/ASPCAP_VERS/RESULTS_VERS/allStar.html)
+   APOGEE_ID       STRING    unique APOGEE identifier (2MASS ID)
+   RA              DOUBLE    of spectroscopic pointing
+   DEC             DOUBLE    of spectroscopic pointing
+   APOGEE_TARGET1  LONG      bitmask target flag, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_TARGET1
+   APOGEE_TARGET2  LONG      bitmask target flag, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_TARGET2
+   TARGFLAGS       STRING    text target flags
+   NVISITS         LONG      number of times target was visited
+   COMMISS         INT       is it commissioning data
+   SNR             FLOAT     signal-to-noise per pixel of spectrum
+   STARFLAG        LONG      bitmask quality flag if set in any visit, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_STARFLAG
+   STARFLAGS       STRING    text quality flag
+   ANDFLAG         LONG      bitmask qulity flag if set in all visits, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_STARFLAG
+   ANDFLAGS        STRING    text quality flag
+   VHELIO_AVG      FLOAT     average velocity, corrected for heliocentric motion
+   VSCATTER        FLOAT     scatter in velocity measurements
+   VERR            FLOAT     SN-weighted error on vhelio_avg
+   VERR_MED        FLOAT     median of visit Verr
+   APSTAR_VERSION  STRING    version of APSTAR
+   ASPCAP_VERSION  STRING    version of ASPCAP
+   RESULTS_VERSION STRING    version of results
+   EXTRATARG       INT       flag for multiple observations of same target
+   FPARAM          FLOAT     output parameter array from ASPCAP stellar parameters fit (uncalibrated), in order Teff, logg, vmicro, [M/H], [C/M], [N/M], [alpha/M]
+   FPARAM_COV      FLOAT     covariance of fitted parameters
+   ASPCAP_CHI2     FLOAT     chi^2 from ASPCAP fit
+   ASPCAP_CLASS    STRING    temperature class of best fitting spectrum
+   ASPCAPFLAG      LONG      bitmask ASPCAP flag, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_ASPCAPFLAG
+   ASPCAPFLAGS     STRING    text ASPCAP flag
+   PARAMFLAG       LONG      Array[7]    bitmask parameter flags, see https://www.sdss.org/dr12/algorithms/bitmasks/#APOGEE_PARAMFLAG
+   PMRA            FLOAT     proper motion from catalog
+   PMDEC           FLOAT     proper motion from catalog
+   PM_SRC          STRING    catalog used for proper motion
+
+SDSS photometric data:
+   RA_SDSS         DOUBLE    position in degrees RA
+   DEC_SDSS        DOUBLE    position in degrees dec
+   RA_SDSS_ERR     DOUBLE    position error (arcseconds)
+   DEC_SDSS_ERR    DOUBLE    position error (arcseconds)
+   EPOCH_SDSS      DOUBLE    MJD of r band photometry (from which position is measured)
+   PSFMAG          FLOAT     Array[5]    SDSS asinh psf magnitude, ugriz respectively
+   PSFMAGERR       FLOAT     Array[5]    error on psf magnitude, ugriz respectively
+   EXTINCTION      FLOAT     Array[5]    extinction correction from SDSS, has NOT been applied to psfmag
+   FLAGS_SDSS      LONG64    Array[5]    SDSS bitwise photometric flags in ugriz
+   GOODPHOT_SDSS   INT       Array[5]    set to 1 if it passed internal flag checks, 0 if not
+   ERRCUT_SDSS     INT       Array[5]    set to 1 if it passed uncertainty cuts, 0 if not
+   RUN             INT       SDSS photometric identifier 
+   RERUN           INT       SDSS photometric identifier 
+   CAMCOL          INT       SDSS photometric identifier 
+   FIELD           INT       SDSS photometric identifier 
+   OBJ             INT       SDSS photometric identifier 
+   DB_SDSS         STRING    database where photometric information was obtained: DR10 or DR7
+   RA_SDSS         DOUBLE           0.0000000
+   DEC_SDSS        DOUBLE           0.0000000
+   RA_SDSS_ERR     DOUBLE           0.0000000
+   DEC_SDSS_ERR    DOUBLE           0.0000000
+
+2MASS photometric data
+   DESIG_2MASS     STRING    2MASS ID (2MASS J+)
+   RA_2MASS        DOUBLE    in degrees RA
+   DEC_2MASS       DOUBLE    in degrees Dec
+   RA_2MASS_ERR    FLOAT     error in 2mass coord, in arcsec
+   DEC_2MASS_ERR   FLOAT     error in 2mass coord, in arcsec
+   EPOCH_2MASS     DOUBLE    MJD of 2MASS photometry
+   MAG_2MASS       FLOAT     Array[3]   2MASS magnitude in JHKs
+   MAGERR_2MASS    FLOAT     Array[3]   2MASS uncertainty in JHKs
+   FLAGS_2MASS     STRING    Array[4]   2MASS flags: ph_qual, rd_flg, bl_flg, and cc_flg
+   GOODPHOT_2MASS  INT       Array[3]   set to 1 if it passed internal flag checks, 0 if not
+   ERRCUT_2MASS    INT       Array[3]   set to 1 if it passed internal error cuts, 0 if not
+
+WISE photometric data
+   DESIG_WISE      STRING    WISE ID (WISE +)
+   RA_WISE         DOUBLE    in degrees RA
+   DEC_WISE        DOUBLE    in degrees dec
+   RA_WISE_ERR     FLOAT     in arcsec
+   DEC_WISE_ERR    FLOAT     in arcsec
+   MAG_WISE        FLOAT     Array[4]    W1W2W3W4 photometry respectively
+   MAGERR_WISE     FLOAT     Array[4]    uncertainty in W1W2W3W4 
+   MAGSAT_WISE     FLOAT     Array[4]    saturation in each band
+   FLAGS_WISE      STRING    Array[7]    nb, na, cc_flags, ext_flag, var_flg, ph_qual, moon_lev
+   GOODPHOT_WISE   INT       Array[4]    set to 1 if it passed internal flag checks, 0 if not
+   ERRCUT_WISE     INT       Array[4]    set to 1 if it passed internal error cuts, 0 if not
+
+Photometry-related or derived parameters
+   APID            STRING    APOGEE ID, very similar to 2MASS ID
+   DIST            FLOAT     rough estimate of distance (likely systematic issues)
+   DMOD            FLOAT     rough estimate of distance modulus
+   EBV_MIN         FLOAT     Maximum extinction
+   EBV_MAX         FLOAT     Minimum extinction
+   A_SDSS          FLOAT     Array[5]    extinction correction in SDSS bands - has been applied
+   A_2MASS         FLOAT     Array[3]    extinction correction in 2MASS bands - has been applied
+   A_WISE          FLOAT     Array[4]    extinction correction in WISE bands - has been applied
+   GOODEXT         INT       set to 1 if the extinction is good
+   APASSMATCH      INT       set to 1 if there is an APASS match
+   APASS_V         FLOAT     APASS V magnitude
+   A_APASS         FLOAT     extinction correction in APASS V - has been applied
+   TEFFVK_B13      FLOAT     Teff calculated from Boyajian+ 2013
+   TEFFVJ_M15      FLOAT     Teff calculated from Mann+ 2015
+   TEFFVK_C08      FLOAT     Teff calculated from Casagrande+ 2008
